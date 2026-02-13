@@ -1,0 +1,5 @@
+# ไม่ให้ส่งโฟรเดอร์ environment ขึ้นไปใน github
+env/*
+
+# ไม่ให้ส่งไฟล์ environment ขึ้นไปใน github
+*.env
