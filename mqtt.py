@@ -1,9 +1,13 @@
 import os
-from dotenv import load_dotenv
-import paho.mqtt.client as mqtt
-import pymongo
 import json
+from dotenv import load_dotenv
 
+# import mqtt connect to server
+import paho.mqtt.client as mqtt
+# import mongodb connect to database
+import pymongo
+
+# เข้าถึงข้อมูลในตัวแปรของไฟล์ environment 
 load_dotenv()
 
 # กำหนดตัวเข้าถึง MQTT Server
