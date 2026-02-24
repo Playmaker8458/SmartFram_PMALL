@@ -1,3 +1,4 @@
 pymongo
 python-dotenv
 paho-mqtt
+python-dotenv

@@ -1,21 +1,22 @@
-from dotenv import dotenv_values
+import os
+from dotenv import load_dotenv
 import paho.mqtt.client as mqtt
 import pymongo
 import json
 
-env_value = dotenv_values(".env")
+load_dotenv()
 
 # กำหนดตัวเข้าถึง MQTT Server
-BROKER = env_value["BROKER_MQTT"]
-PORT = int(env_value["PORT_MQTT"])
-USERNAME = env_value["USERNAME_MQTT"]
-PASSWORD = env_value["PASSWORD_MQTT"]
+BROKER = os.getenv("BROKER_MQTT")
+PORT = int(os.getenv("PORT_MQTT"))
+USERNAME = os.getenv("USERNAME_MQTT")
+PASSWORD = os.getenv("PASSWORD_MQTT")
 
 # กำหนดหัวข้อที่จะส่ง โดยเลือกหัวข้อเป็น ESP32 สำหรับบันทึกข้อมูลในนั้น 
-TOPIC = "esp32/ESP32_001/message"
+TOPIC = "esp32/ESP32_001/message/SoilSensor"
 
 # เชื่อมต่อ MongoDB
-myclient = pymongo.MongoClient(env_value["URL_MOGODB_CONNECTION"])
+myclient = pymongo.MongoClient(os.getenv("URL_MOGODB_CONNECTION"))
 mydb = myclient["SmartFram"] # เข้าถึงฐานข้อมูล SmartFram
 table = mydb["PM_ALL"] # เข้าถึงตาราง PM_ALL
 
