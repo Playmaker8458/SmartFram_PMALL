@@ -1,17 +1,18 @@
+version: '3.8'
+
 services:
   mongodb:
-    image: mongo
+    image: mongo:latest
     container_name: mongodb
-    restart: always
-    volumes:
-      - mongo_data:/data/db
-    env_file:
-      - .env
+    restart: unless-stopped
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=smartfram845899
     ports:
-      - "27017:27017"
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
 
 volumes:
-  mongo_data:
+  mongodb_data:
+  

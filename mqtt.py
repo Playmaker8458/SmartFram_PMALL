@@ -2,34 +2,32 @@ import os
 import json
 from dotenv import load_dotenv
 
-# import mqtt connect to server
-import paho.mqtt.client as mqtt
-# import mongodb connect to database
-import pymongo
+import paho.mqtt.client as mqtt # import mqtt connect to server
+import pymongo # import mongodb connect to database
 
 # เข้าถึงข้อมูลในตัวแปรของไฟล์ environment 
 load_dotenv()
 
-# กำหนดตัวเข้าถึง MQTT Server
+# กำหนดตัวที่ใช้ในการเข้าถึง MQTT Server
 BROKER = os.getenv("BROKER_MQTT")
 PORT = int(os.getenv("PORT_MQTT"))
 USERNAME = os.getenv("USERNAME_MQTT")
 PASSWORD = os.getenv("PASSWORD_MQTT")
 
-# กำหนดหัวข้อที่จะส่ง โดยเลือกหัวข้อเป็น ESP32 สำหรับบันทึกข้อมูลในนั้น 
-TOPIC = "esp32/ESP32_001/message/SoilSensor"
+# กำหนดเส้นทางในการส่งข้อมูลให้กับ MQTT Server โดยกำหนดเป็น SoilSensor 
+TOPIC = "esp32/ESP32_001/SoilSensor"
 
-# เชื่อมต่อ MongoDB
+# เชื่อมต่อ MongoDB ทั้งหมด 
 myclient = pymongo.MongoClient(os.getenv("URL_MOGODB_CONNECTION"))
-mydb = myclient["SmartFram"] # เข้าถึงฐานข้อมูล SmartFram
-table = mydb["PM_ALL"] # เข้าถึงตาราง PM_ALL
+mydb = myclient["Data_sensor"] # เข้าถึงฐานข้อมูล Data_sensor
+table = mydb["Soil_Data"] # เข้าถึงตาราง Soil_Data
 
 # เชื่อมต่อ MQTT Server
 def on_connect(client, userdata, flags, reason_code, properties):
     print("Connected with reason code:", reason_code)
     client.subscribe(TOPIC)
 
-# ดึงข้อมูลจาก MQTT 
+# ดึงข้อมูลจาก MQTT ไปเก็บในฐานข้อมูลของ Mongodb และ แสดงผล
 def on_message(client, userdata, msg):
     payload = msg.payload.decode()
     # แปลง dictionary ที่เป็น string ให้เป็น dictionary
