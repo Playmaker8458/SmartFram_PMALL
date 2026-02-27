@@ -5,9 +5,11 @@ services:
     image: mongo:latest
     container_name: mongodb
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=smartfram845899
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     ports:
       - 27017:27017
     volumes:

@@ -15,7 +15,7 @@ USERNAME = os.getenv("USERNAME_MQTT")
 PASSWORD = os.getenv("PASSWORD_MQTT")
 
 # กำหนดเส้นทางในการส่งข้อมูลให้กับ MQTT Server โดยกำหนดเป็น SoilSensor 
-TOPIC = "esp32/ESP32_001/SoilSensor"
+TOPIC = "esp32/ESP32_001/message/SoilSensor"
 
 # เชื่อมต่อ MongoDB ทั้งหมด 
 myclient = pymongo.MongoClient(os.getenv("URL_MOGODB_CONNECTION"))
