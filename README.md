@@ -47,7 +47,7 @@ deactivate
 #### (ความหมายด้านบนมาจากลิ้งค์นี้ https://devhub.in.th/learn/python/requirements-txt)
 #### การติดตั้งส่วนเสริมในไฟล์ requirements txt จะใช้คำสั่งต่อไปนี้
 ```bash
-#### -r ย่อมากจาก read ใช้ในการอ่านไฟล์ที่เรากำหนด
+# -r ย่อมากจาก read ใช้ในการอ่านไฟล์ที่เรากำหนด
 pip install -r requirements.txt 
 ```
 ---
